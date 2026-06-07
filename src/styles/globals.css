@@ -3,7 +3,7 @@
 :root {
   --background: rgb(209, 221, 253);
   --text: rgb(59, 79, 125);
-  --primary: rgb(37, 99, 235);
+  /* --primary: rgb(37, 99, 235);
   --primary-subtle: rgb(37, 99, 235, 0.1);
   --success: rgb(22, 163, 74);
   --success-subtle: rgb(22, 163, 74, 0.1);
@@ -12,8 +12,29 @@
   --warning: rgb(217, 119, 6);
   --warning-subtle: rgb(217, 119, 6, 0.1);
   --neutral: rgb(82, 82, 82);
-  --neutral-subtle: rgb(82, 82, 82, 0.1);
+  --neutral-subtle: rgb(82, 82, 82, 0.1); */
 }
+
+@theme {
+
+  --color-primary: rgb(37 99 235);
+  --color-primary-subtle: rgb(37 99 235 / 0.1);
+
+  --color-success: rgb(22 163 74);
+  --color-success-subtle: rgb(22 163 74 / 0.1);
+
+  --color-destructive: rgb(220 38 38);
+  --color-destructive-subtle: rgb(220 38 38 / 0.1);
+
+  --color-warning: rgb(217 119 6);
+  --color-warning-subtle: rgb(217 119 6 / 0.1);
+
+  --color-neutral: rgb(82 82 82);
+  --color-neutral-subtle: rgb(82 82 82 / 0.1);
+  
+}
+
+
 
 body {
   color: var(--text);
@@ -27,6 +48,6 @@ body {
 
 .neu_inner {
   background: var(--background);
-  box-shadow:inset 4px 4px 7px #c7d2f0,
-   inset -4px -4px 7px #dbe8ff;
+  box-shadow: inset 4px 4px 7px #c7d2f0,
+    inset -4px -4px 7px #dbe8ff;
 }

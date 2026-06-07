@@ -1,4 +1,6 @@
+import { cn } from '@/lib/utils'
 import React, { FC } from 'react'
+import { cva } from 'class-variance-authority'
 
 export type Appearance = 'solid' | 'subtle'
 export type Variant = 'primary' | 'success' | 'destructive' | 'warning' | 'neutral'
@@ -10,18 +12,66 @@ interface BadgeProps {
     children: React.ReactNode
 }
 
-const getBadgeStyles = (appearance: Appearance, variant: Variant) => {
-    // solid style
-    if (appearance === 'solid') return { background: `var(--${variant})`, color: 'whitesmoke' }
-    // subtle style
-    return { background: `var(--${variant}-subtle)`, color: `var(--${variant})` }
-}
+const badgeVariants = cva(
+    'inline-flex items-center justify-center rounded-full py-1 px-2 md:px-2.5 text-xs md:text-sm',
+    {
+        variants: {
+            variant: {
+                primary: 'bg-primary text-white',
+                success: 'bg-success text-white',
+                destructive: 'bg-destructive text-white',
+                warning: 'bg-warning text-white',
+                neutral: 'bg-neutral text-white',
+            },
+            appearance: {
+                solid: '',
+                subtle: '',
+            },
+        },
+        compoundVariants: [
+            {
+                variant: 'primary',
+                appearance: 'subtle',
+                className: 'bg-primary-subtle text-primary',
+            },
+            {
+                variant: 'success',
+                appearance: 'subtle',
+                className: 'bg-success-subtle text-success',
+            },
+            {
+                variant: 'destructive',
+                appearance: 'subtle',
+                className: 'bg-destructive-subtle text-destructive',
+            },
+            {
+                variant: 'warning',
+                appearance: 'subtle',
+                className: 'bg-warning-subtle text-warning',
+            },
+            {
+                variant: 'neutral',
+                appearance: 'subtle',
+                className: 'bg-neutral-subtle text-neutral',
+            },
+        ],
+        defaultVariants: {
+            variant: 'primary',
+            appearance: 'solid',
+        },
+    }
+)
 
-const Badge: FC<BadgeProps> = ({ appearance = 'solid', variant = 'primary', className, children }) => {
+const Badge: FC<BadgeProps> = ({ appearance, variant, className, children }) => {
     return (
         <span
-            style={getBadgeStyles(appearance, variant)}
-            className={`${className ?? ''} flex items-center justify-center w-fit h-fit py-1 px-2 md:px-2.5 text-xs md:text-sm rounded-full`}
+            className={cn(
+                badgeVariants({
+                    variant,
+                    appearance,
+                }),
+                className
+            )}
         >
             {children}
         </span>
